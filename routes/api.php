@@ -12,6 +12,7 @@ use App\Http\Controllers\Authentication\ResetPasswordController;
 // GUEST
 Route::post('/login',       [LoginController::class, 'login']);
 Route::post('/register',    [RegisterController::class, 'register']);
+Route::post('reset',        [ResetPasswordController::class, 'reset']);
 
 // USER
 Route::middleware('auth:sanctum')->group(function () {
@@ -19,7 +20,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Authentication
     Route::post('/logout',  [LoginController::class, 'logout']);
-    Route::post('reset',    [ResetPasswordController::class, 'reset']);
 
     // Profile && Settings
     Route::get('/profile',  [ProfileController::class, 'show']);
