@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Authentication;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Authentication\LoginRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -20,12 +21,22 @@ class LoginController extends Controller
                 ]
             ], 422);
         }
-        
+
         $token = $request->user()->createToken('Ola');
 
         return [
+            'message' => 'Welcome, ' . $request->user()->name,
             'token' => $token->plainTextToken,
             'user' => $request->user()
+        ];
+    }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return [
+            'message' => 'Goodbye! ' . $request->user()->name
         ];
     }
 }
