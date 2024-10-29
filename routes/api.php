@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegisterController;
 use App\Http\Controllers\Authentication\ResetPasswordController;
@@ -23,4 +24,5 @@ Route::middleware('auth:sanctum')->group(function () {
     // Profile && Settings
     Route::get('/profile',  [ProfileController::class, 'show']);
     Route::put('/profile',  [ProfileController::class, 'update']);
+    Route::post('/change-password', ChangePasswordController::class);
 });
