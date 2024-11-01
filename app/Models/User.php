@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        '2FA',
         'health_conditions',
         'dietary_preferences',
     ];
@@ -33,8 +34,16 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password'
+        'password',
+        '2FA'
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     * 
+     * @var array
+     */
+    protected $appends = ['has_TwoFA'];
 
     /**
      * Get the attributes that should be cast.
@@ -48,5 +57,15 @@ class User extends Authenticatable
             'health_conditions' => 'array',
             'dietary_preferences' => 'array',
         ];
+    }
+    
+    /**
+     * Check if there is 2FA or not
+     * 
+     * @return bool
+     */
+    public function getHasTwoFAAttribute()
+    {
+        return (bool) $this->{'2FA'};
     }
 }
