@@ -25,8 +25,6 @@ class User extends Authenticatable
         'password',
         'reset_code',
         '2FA',
-        'health_conditions',
-        'dietary_preferences',
     ];
 
     /**
@@ -47,6 +45,13 @@ class User extends Authenticatable
     protected $appends = ['has_TwoFA'];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['information'];
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -55,11 +60,9 @@ class User extends Authenticatable
     {
         return [
             'password' => 'hashed',
-            'health_conditions' => 'array',
-            'dietary_preferences' => 'array',
         ];
     }
-    
+
     /**
      * Check if there is 2FA or not
      * 
@@ -68,5 +71,10 @@ class User extends Authenticatable
     public function getHasTwoFAAttribute()
     {
         return (bool) $this->{'2FA'};
+    }
+
+    public function information()
+    {
+        return $this->hasOne(UserInformation::class);
     }
 }

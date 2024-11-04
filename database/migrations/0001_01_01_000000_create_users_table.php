@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->json('health_conditions')->nullable();
-            $table->json('dietary_preferences')->nullable();
             $table->timestamps();
         });
 

@@ -22,12 +22,13 @@ class LoginController extends Controller
             ], 422);
         }
 
-        $token = $request->user()->createToken('Ola');
+        $user = $request->user();
+        $token = $user->createToken('Ola');
 
         return [
-            'message' => 'Welcome, ' . $request->user()->name,
+            'message' => 'Welcome, ' . $user->name,
             'token' => $token->plainTextToken,
-            'user' => $request->user()
+            'user' => $user
         ];
     }
 
