@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'reset_code',
         '2FA',
         'health_conditions',
         'dietary_preferences',

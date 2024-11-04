@@ -11,22 +11,22 @@ use App\Http\Controllers\Authentication\RegisterController;
 use App\Http\Controllers\Authentication\ResetPasswordController;
 
 // GUEST
-Route::post('/login',       [LoginController::class, 'login']);
-Route::post('/register',    [RegisterController::class, 'register']);
+Route::post('login',       [LoginController::class, 'login']);
+Route::post('register',    [RegisterController::class, 'register']);
+Route::post('forgot',       [ResetPasswordController::class, 'forgot']);
 Route::post('reset',        [ResetPasswordController::class, 'reset']);
-
 
 // USER
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/data',             DataController::class);
+    Route::get('data',             DataController::class);
 
     // Authentication
-    Route::post('/logout',          [LoginController::class, 'logout']);
+    Route::post('logout',          [LoginController::class, 'logout']);
 
     // Profile && Settings
-    Route::get('/profile',          [ProfileController::class, 'show']);
-    Route::put('/profile',          [ProfileController::class, 'update']);
-    Route::post('/change-password', ChangePasswordController::class);
+    Route::get('profile',          [ProfileController::class, 'show']);
+    Route::put('profile',          [ProfileController::class, 'update']);
+    Route::post('change-password', ChangePasswordController::class);
 
     Route::prefix('2FA')->controller(TwoFAController::class)->group(function () {
         Route::post('request',      'request');
