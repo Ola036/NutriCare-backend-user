@@ -15,11 +15,16 @@ class ProfileController extends Controller
 
     public function update(UpdateInformationRequest $request)
     {
-        $request->user()->update($request->validated());
+        $user = $request->user();
+        $user->update($request->only('name', 'email'));
+
+        $user->information->update(
+            $request->only('health_conditions', 'dietary_preferences')
+        );
 
         return [
             'message' => 'Your profile has been updated successfully.',
-            'user' => $request->user()
+            'user' => $user
         ];
     }
 }
