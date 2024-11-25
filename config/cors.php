@@ -19,13 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [
-        'https://localhost:3000',
-        'http://localhost:3000',
-        'https://nutricare1.netlify.app',
-        'localhost:3000',
-        'nutricare1.netlify.app'
-    ],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
