@@ -9,6 +9,7 @@ use App\Http\Controllers\User\ChangePasswordController;
 use App\Http\Controllers\Authentication\LoginController;
 use App\Http\Controllers\Authentication\RegisterController;
 use App\Http\Controllers\Authentication\ResetPasswordController;
+use App\Http\Controllers\Authentication\VerificationController;
 use App\Http\Middleware\Cors;
 
 Route::middleware(Cors::class)->group(function () {
@@ -23,6 +24,7 @@ Route::middleware(Cors::class)->group(function () {
         Route::get('data',             DataController::class);
 
         // Authentication
+        Route::post('verify',          VerificationController::class);
         Route::post('logout',          [LoginController::class, 'logout']);
 
         // Profile && Settings

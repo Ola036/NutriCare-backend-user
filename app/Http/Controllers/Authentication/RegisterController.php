@@ -13,6 +13,8 @@ class RegisterController extends Controller
         $user = User::create($request->validated());
         $user->information()->create();
 
+        $user->sendEmailVerificationNotification();
+
         $token = $user->createToken('Ola');
 
         return [
